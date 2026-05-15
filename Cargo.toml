@@ -22,3 +22,5 @@ anyhow = "1.0"
 duct = "0.13"
 # eframe: egui のネイティブデスクトップバックエンド（gui-a で使用）
 eframe = "0.31"
+# iced: Elm architecture GUI framework (gui-b で使用)
+iced = "0.13"

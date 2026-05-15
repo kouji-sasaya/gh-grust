@@ -1,13 +1,13 @@
 // src/command/gui_b/cmd.rs
-// GuiBCommand: iced（Elm アーキテクチャ / リアクティブ）を使ったウィンドウサンプル
+// GuiBCommand: iced (Elm Architecture / Reactive) window sample
 
 use crate::common::commandnode::CommandNode;
 use clap::ArgMatches;
 use std::error::Error;
 
-/// GuiBCommand: iced による Elm インスパイア型リアクティブ GUI
-/// アーキテクチャ: Model-Update-View パターン（Elm アーキテクチャ）
-/// 特徴: 関数型プログラミングスタイル。状態とビューが明確に分離される
+/// GuiBCommand: iced Elm Architecture GUI
+/// Architecture: Model-Message-Update-View pattern (Elm inspired)
+/// Features: Functional programming style. State and view clearly separated
 pub struct GuiBCommand;
 
 impl GuiBCommand {
@@ -22,24 +22,29 @@ impl CommandNode for GuiBCommand {
     }
 
     fn about(&self) -> &'static str {
-        "GUI サンプル B: iced（Elm アーキテクチャ / リアクティブ）"
+        "GUI Sample B: iced (Elm Architecture / Reactive)"
     }
 
     fn command(&self) -> clap::Command {
-        // 完全修飾で clap::Command を記述
+        // Complete qualifier for clap::Command
         clap::Command::new(self.name())
             .about(self.about())
             .disable_help_subcommand(true)
     }
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
-        println!("[gui-b] アーキテクチャ: iced（Elm アーキテクチャ / リアクティブ）");
-        println!("  - Model（状態）/ Message（イベント）/ Update（状態遷移）/ View（描画）の4要素");
-        println!("  - 状態変化はメッセージとして表現し、副作用を分離できる");
-        println!("  - TODO: iced::application() でウィンドウを起動する");
-        // TODO: 実装例
-        // iced::application("gui-b: iced サンプル", GuiBApp::update, GuiBApp::view)
-        //     .run()?;
+        // iced アプリケーションを起動（iced 0.13 の関数型 API を使用）
+        iced::application(
+            "gui-b: iced Elm Architecture",
+            super::app::GuiBApp::update,
+            super::app::GuiBApp::view,
+        )
+        .window(iced::window::Settings {
+            size: iced::Size::new(520.0, 360.0),
+            ..Default::default()
+        })
+        .run()?;
+
         Ok(())
     }
 }
