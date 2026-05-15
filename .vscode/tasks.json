@@ -1,0 +1,26 @@
+{
+  // VS Code タスク設定
+  // デバッグ前に cargo build を実行するためのタスク定義
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // タスクの識別子（launch.json の preLaunchTask から参照されます）
+      "label": "cargo build",
+      "type": "shell",
+      // 実行するコマンド
+      "command": "cargo",
+      "args": ["build"],
+      // タスクのグループ（ビルドタスクとして定義）
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      // 問題マッチャー（コンパイルエラーを自動検出して表示）
+      "problemMatcher": ["$rustc"],
+      // タスクの説明
+      "presentation": {
+        "reveal": "silent"
+      }
+    }
+  ]
+}

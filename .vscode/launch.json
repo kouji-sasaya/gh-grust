@@ -1,0 +1,20 @@
+{
+  // Minimal VS Code debug configuration for gh-animal
+  // Press F5 to build (preLaunchTask) and start the debugger.
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "name": "Debug gh-animal",
+      "type": "lldb",
+      "request": "launch",
+      // Binary produced by `cargo build`.
+      "program": "${workspaceFolder}/target/debug/gh-animal",
+      // Default args passed to the program. Edit as needed.
+      "args": ["rat", "squeak"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "cargo build",
+      "sourceLanguages": ["rust"]
+    }
+  ]
+}

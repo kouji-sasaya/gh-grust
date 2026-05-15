@@ -1,0 +1,4 @@
+# ビルド成果物を Git の対象外にする
+/target/
+dist/
+/**/target/
