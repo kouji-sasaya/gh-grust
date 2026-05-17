@@ -31,6 +31,8 @@ winit = "0.30.13"
 softbuffer = "0.4.8"
 # gtk4: ネイティブ GTK4 ウィジェット（gui-e で使用）
 gtk4 = "0.10.3"
+# fltk: 軽量なネイティブウィジェットツールキット（gui-f で使用）
+fltk = "1.5.23"
 
 [build-dependencies]
 slint-build = "1.16.1"

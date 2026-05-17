@@ -2,6 +2,7 @@
 // GuiFCommand: fltk（FLTK ウィジェットツールキット）を使ったウィンドウサンプル
 
 use crate::common::commandnode::CommandNode;
+use crate::common::gui_runtime;
 use clap::ArgMatches;
 use std::error::Error;
 
@@ -33,18 +34,6 @@ impl CommandNode for GuiFCommand {
     }
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
-        println!("[gui-f] アーキテクチャ: fltk-rs（軽量ウィジェット / コールバック型）");
-        println!(
-            "  - ウィジェットにコールバック関数を登録して UI イベントを処理する手続き型スタイル"
-        );
-        println!("  - 依存が少なく軽量。静的リンクでバイナリ単体配布が可能");
-        println!("  - TODO: fltk::app::App::default() → Window::new() でウィンドウを起動する");
-        // TODO: 実装例
-        // let app = fltk::app::App::default();
-        // let mut wind = fltk::window::Window::new(100, 100, 400, 300, "gui-f: fltk サンプル");
-        // wind.end();
-        // wind.show();
-        // app.run()?;
-        Ok(())
+        gui_runtime::run_gui_command(self.name(), super::app::run)
     }
 }
