@@ -34,7 +34,9 @@ impl CommandNode for GuiFCommand {
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
         println!("[gui-f] アーキテクチャ: fltk-rs（軽量ウィジェット / コールバック型）");
-        println!("  - ウィジェットにコールバック関数を登録して UI イベントを処理する手続き型スタイル");
+        println!(
+            "  - ウィジェットにコールバック関数を登録して UI イベントを処理する手続き型スタイル"
+        );
         println!("  - 依存が少なく軽量。静的リンクでバイナリ単体配布が可能");
         println!("  - TODO: fltk::app::App::default() → Window::new() でウィンドウを起動する");
         // TODO: 実装例

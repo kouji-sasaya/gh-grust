@@ -2,6 +2,7 @@
 // GuiBCommand: iced (Elm Architecture / Reactive) window sample
 
 use crate::common::commandnode::CommandNode;
+use crate::common::gui_runtime;
 use clap::ArgMatches;
 use std::error::Error;
 
@@ -33,18 +34,19 @@ impl CommandNode for GuiBCommand {
     }
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
-        // iced アプリケーションを起動（iced 0.13 の関数型 API を使用）
-        iced::application(
-            "gui-b: iced Elm Architecture",
-            super::app::GuiBApp::update,
-            super::app::GuiBApp::view,
-        )
-        .window(iced::window::Settings {
-            size: iced::Size::new(520.0, 360.0),
-            ..Default::default()
-        })
-        .run()?;
+        gui_runtime::run_gui_command(self.name(), || {
+            iced::application(
+                "gui-b: iced Elm Architecture",
+                super::app::GuiBApp::update,
+                super::app::GuiBApp::view,
+            )
+            .window(iced::window::Settings {
+                size: iced::Size::new(520.0, 360.0),
+                ..Default::default()
+            })
+            .run()?;
 
-        Ok(())
+            Ok(())
+        })
     }
 }

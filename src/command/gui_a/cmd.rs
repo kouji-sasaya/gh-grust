@@ -2,6 +2,7 @@
 // GuiACommand: egui (Immediate Mode) window sample
 
 use crate::common::commandnode::CommandNode;
+use crate::common::gui_runtime;
 use clap::ArgMatches;
 use std::error::Error;
 
@@ -33,22 +34,21 @@ impl CommandNode for GuiACommand {
     }
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
-        // Set initial window size and title
-        let options = eframe::NativeOptions {
-            viewport: eframe::egui::ViewportBuilder::default()
-                .with_title("gui-a: egui Immediate Mode Sample")
-                .with_inner_size([520.0, 360.0]),
-            ..Default::default()
-        };
+        gui_runtime::run_gui_command(self.name(), || {
+            let options = eframe::NativeOptions {
+                viewport: eframe::egui::ViewportBuilder::default()
+                    .with_title("gui-a: egui Immediate Mode Sample")
+                    .with_inner_size([520.0, 360.0]),
+                ..Default::default()
+            };
 
-        // Launch window with eframe::run_native
-        // Closure creates and returns App instance
-        eframe::run_native(
-            "com.example.gui-a",
-            options,
-            Box::new(|_cc| Ok(Box::new(super::app::GuiAApp::default()))),
-        )?;
+            eframe::run_native(
+                "com.example.gui-a",
+                options,
+                Box::new(|_cc| Ok(Box::new(super::app::GuiAApp::default()))),
+            )?;
 
-        Ok(())
+            Ok(())
+        })
     }
 }

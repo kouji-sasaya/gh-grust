@@ -2,6 +2,7 @@
 // GuiDCommand: winit（低レベルウィンドウ管理）を使ったウィンドウサンプル
 
 use crate::common::commandnode::CommandNode;
+use crate::common::gui_runtime;
 use clap::ArgMatches;
 use std::error::Error;
 
@@ -33,17 +34,6 @@ impl CommandNode for GuiDCommand {
     }
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
-        println!("[gui-d] アーキテクチャ: winit（低レベルウィンドウ管理）");
-        println!("  - OS のウィンドウシステムへの薄いラッパー");
-        println!("  - EventLoop でキーボード／マウス／リサイズなどのイベントを直接処理する");
-        println!("  - softbuffer と組み合わせてピクセルバッファを直接書き込んで描画する");
-        println!("  - TODO: EventLoop::new() → Window::new() → softbuffer でピクセル描画");
-        // TODO: 実装例
-        // let event_loop = winit::event_loop::EventLoop::new()?;
-        // let window = winit::window::WindowBuilder::new()
-        //     .with_title("gui-d: winit サンプル")
-        //     .build(&event_loop)?;
-        // event_loop.run(move |event, target| { ... })?;
-        Ok(())
+        gui_runtime::run_gui_command(self.name(), super::app::run)
     }
 }

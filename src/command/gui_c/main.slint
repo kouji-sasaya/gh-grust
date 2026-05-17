@@ -1,0 +1,112 @@
+import { Button, HorizontalBox, LineEdit, Slider, VerticalBox } from "std-widgets.slint";
+
+export component GuiCWindow inherits Window {
+    in-out property <string> message: "Hello, Slint!";
+    in-out property <int> counter: 0;
+    in-out property <float> slider_value: 0.5;
+    in-out property <brush> background_color: #202020;
+
+    width: 520px;
+    height: 360px;
+    title: "gui-c: Slint Declarative DSL Sample";
+
+    Rectangle {
+        background: root.background_color;
+
+        VerticalBox {
+            padding: 20px;
+            spacing: 12px;
+
+            Text {
+                text: "gui-c: Slint Declarative DSL Sample";
+                color: #f5f5f5;
+                font-size: 24px;
+            }
+
+            Text {
+                text: "UI is described in .slint and bound to properties.";
+                color: #d0d0d0;
+                wrap: word-wrap;
+            }
+
+            LineEdit {
+                text <=> root.message;
+            }
+
+            Slider {
+                value <=> root.slider_value;
+                minimum: 0;
+                maximum: 1;
+            }
+
+            Text {
+                text: root.message;
+                color: #ffffff;
+            }
+
+            Rectangle {
+                height: 16px;
+                border-radius: 8px;
+                background: #4f8cff;
+                width: parent.width * root.slider_value;
+            }
+
+            HorizontalBox {
+                spacing: 8px;
+
+                Button {
+                    text: "Click";
+                    clicked => {
+                        root.counter += 1;
+                        root.message = "Button clicked";
+                    }
+                }
+
+                Button {
+                    text: "Red";
+                    clicked => {
+                        root.background_color = #3c1414;
+                        root.message = "Background: red";
+                    }
+                }
+
+                Button {
+                    text: "Green";
+                    clicked => {
+                        root.background_color = #143c14;
+                        root.message = "Background: green";
+                    }
+                }
+
+                Button {
+                    text: "Blue";
+                    clicked => {
+                        root.background_color = #14143c;
+                        root.message = "Background: blue";
+                    }
+                }
+
+                Button {
+                    text: "Reset";
+                    clicked => {
+                        root.counter = 0;
+                        root.slider_value = 0.5;
+                        root.background_color = #202020;
+                        root.message = "Hello, Slint!";
+                    }
+                }
+            }
+
+            Text {
+                text: "Counter clicks update state in the declarative component.";
+                color: #d0d0d0;
+                wrap: word-wrap;
+            }
+
+            Text {
+                text: "Counter changed";
+                color: root.counter > 0 ? #7ee787 : #d0d0d0;
+            }
+        }
+    }
+}

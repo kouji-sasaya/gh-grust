@@ -1,8 +1,8 @@
 // src/command/gui_b/app.rs
 // GuiBApp: iced Elm Architecture (Model-Message-Update-View) demo
 
-use iced::{Element, Length, Color, Task};
 use iced::widget::{button, column, container, row, slider, text};
+use iced::{Color, Element, Length, Task};
 
 /// GuiBApp: Elm Architecture Demo (Model-Update-View)
 /// Message patterns decouple state transitions from rendering
@@ -82,7 +82,7 @@ impl GuiBApp {
         Task::none()
     }
 
-    pub fn view(&self) -> Element<Message> {
+    pub fn view(&self) -> Element<'_, Message> {
         let bg_color = Color::from_rgb(self.bg_color.0, self.bg_color.1, self.bg_color.2);
 
         let content = column![
@@ -95,8 +95,7 @@ impl GuiBApp {
                 text(format!("Count: {}", self.count)).width(Length::Fixed(100.0)),
             ]
             .spacing(10),
-            slider(0.0..=1.0, self.value, Message::SliderChanged)
-                .width(Length::Fixed(300.0)),
+            slider(0.0..=1.0, self.value, Message::SliderChanged).width(Length::Fixed(300.0)),
             text(format!("Slider: {:.2}", self.value)),
             row![
                 button("Red").on_press(Message::RedPressed),

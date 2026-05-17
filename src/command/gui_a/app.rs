@@ -22,7 +22,7 @@ impl Default for GuiAApp {
             label: "Hello, egui!".to_owned(),
             value: 0.5,
             count: 0,
-            bg_color: egui::Color32::from_rgb(30, 30, 30),  // Dark gray default
+            bg_color: egui::Color32::from_rgb(30, 30, 30), // Dark gray default
         }
     }
 }

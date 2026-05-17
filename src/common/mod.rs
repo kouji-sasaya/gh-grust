@@ -2,3 +2,4 @@
 // common モジュールの公開
 
 pub mod commandnode;
+pub mod gui_runtime;

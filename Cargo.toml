@@ -24,3 +24,11 @@ duct = "0.13"
 eframe = "0.31"
 # iced: Elm architecture GUI framework (gui-b で使用)
 iced = "0.13"
+slint = "1.16.1"
+# winit: 低レベルなウィンドウイベントループ（gui-d で使用）
+winit = "0.30.13"
+# softbuffer: CPU で描いたピクセルバッファをウィンドウへ転送（gui-d で使用）
+softbuffer = "0.4.8"
+
+[build-dependencies]
+slint-build = "1.16.1"

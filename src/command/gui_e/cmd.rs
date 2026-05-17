@@ -34,7 +34,9 @@ impl CommandNode for GuiECommand {
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
         println!("[gui-e] アーキテクチャ: gtk4-rs（ネイティブウィジェット）");
-        println!("  - GTK4 のウィジェットツリーをシグナル＆スロットで接続するオブジェクト指向スタイル");
+        println!(
+            "  - GTK4 のウィジェットツリーをシグナル＆スロットで接続するオブジェクト指向スタイル"
+        );
         println!("  - Linux のデスクトップ標準 UI。GNOME アプリと同じ外観になる");
         println!("  - TODO: gtk4::Application::new() → ApplicationWindow でウィンドウを起動する");
         // TODO: 実装例（要: libgtk-4-dev パッケージ）
