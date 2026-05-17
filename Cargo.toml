@@ -29,6 +29,8 @@ slint = "1.16.1"
 winit = "0.30.13"
 # softbuffer: CPU で描いたピクセルバッファをウィンドウへ転送（gui-d で使用）
 softbuffer = "0.4.8"
+# gtk4: ネイティブ GTK4 ウィジェット（gui-e で使用）
+gtk4 = "0.10.3"
 
 [build-dependencies]
 slint-build = "1.16.1"

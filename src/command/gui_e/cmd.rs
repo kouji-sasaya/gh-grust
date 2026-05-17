@@ -2,6 +2,7 @@
 // GuiECommand: gtk4（ネイティブウィジェット）を使ったウィンドウサンプル
 
 use crate::common::commandnode::CommandNode;
+use crate::common::gui_runtime;
 use clap::ArgMatches;
 use std::error::Error;
 
@@ -33,24 +34,6 @@ impl CommandNode for GuiECommand {
     }
 
     fn execute(&self, _matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
-        println!("[gui-e] アーキテクチャ: gtk4-rs（ネイティブウィジェット）");
-        println!(
-            "  - GTK4 のウィジェットツリーをシグナル＆スロットで接続するオブジェクト指向スタイル"
-        );
-        println!("  - Linux のデスクトップ標準 UI。GNOME アプリと同じ外観になる");
-        println!("  - TODO: gtk4::Application::new() → ApplicationWindow でウィンドウを起動する");
-        // TODO: 実装例（要: libgtk-4-dev パッケージ）
-        // let app = gtk4::Application::builder()
-        //     .application_id("com.example.gui-e")
-        //     .build();
-        // app.connect_activate(|app| {
-        //     let window = gtk4::ApplicationWindow::builder()
-        //         .application(app)
-        //         .title("gui-e: GTK4 サンプル")
-        //         .build();
-        //     window.present();
-        // });
-        // app.run();
-        Ok(())
+        gui_runtime::run_gui_command(self.name(), super::app::run)
     }
 }
